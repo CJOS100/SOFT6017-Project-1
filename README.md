@@ -52,9 +52,6 @@ c. Largest amount on deposit specifying the account holder(s)
 6. Quit and write the data from the list(s) back to bank.txt
 
 
-
-
-
 ## Built With
 
 * [Python](http://www.dropwizard.io/1.0.2/docs/) - The code framework used
@@ -64,5 +61,3 @@ c. Largest amount on deposit specifying the account holder(s)
 ## Authors
 
 * **Cathal O'Sullivan** - *Student*
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
