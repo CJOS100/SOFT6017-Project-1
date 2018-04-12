@@ -1,4 +1,3 @@
-## Initial blank python file
 quit = 0
 
 def mainMenu():
