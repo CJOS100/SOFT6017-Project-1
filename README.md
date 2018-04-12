@@ -5,31 +5,31 @@ No: R00161981
 
 ## Specifications
 
-Data for a bank is kept in a file called bank.txt.
-The file stores bank records and each bank record consists of
- a bank account number
- a balance in the account
- a name
-A snippet of the file might be:
-98768
-8077.00
-Jim McIntyre
-58697
-23233.99
-Michael Murphy
-35318
-4545.12
-Abigail Buckley
-20454
-23233.45
-Marie Delaney
-Or if you prefer the data on one line might be
-98768 8077.00 Jim McIntyre
-58697 23233.99 Michael Murphy
-35318 4545.12 Abigail Buckley
-20454 23233.45 Marie Delaney
-Develop an application that allows the user to choose from one of the following options, until they
-choose to quit.
+Data for a bank is kept in a file called bank.txt.  
+The file stores bank records and each bank record consists of  
+•	 a bank account number  
+•	 a balance in the account  
+•	 a name  
+  
+A snippet of the file might be:  
+98768  
+8077.00  
+Jim McIntyre  
+58697  
+23233.99  
+Michael Murphy  
+35318  
+4545.12  
+Abigail Buckley  
+20454  
+23233.45  
+Marie Delaney  
+Or if you prefer the data on one line might be  
+98768 8077.00 Jim McIntyre  
+58697 23233.99 Michael Murphy  
+35318 4545.12 Abigail Buckley  
+20454 23233.45 Marie Delaney  
+Develop an application that allows the user to choose from one of the following options, until they choose to quit.  
 1. Open an account
 2. Close an account
 3. Withdraw money
@@ -52,9 +52,6 @@ c. Largest amount on deposit specifying the account holder(s)
 6. Quit and write the data from the list(s) back to bank.txt
 
 
-
-
-
 ## Built With
 
 * [Python](http://www.dropwizard.io/1.0.2/docs/) - The code framework used
@@ -64,5 +61,3 @@ c. Largest amount on deposit specifying the account holder(s)
 ## Authors
 
 * **Cathal O'Sullivan** - *Student*
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
