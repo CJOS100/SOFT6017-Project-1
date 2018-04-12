@@ -10,7 +10,7 @@ The file stores bank records and each bank record consists of
 •	 a bank account number  
 •	 a balance in the account  
 •	 a name  
-  
+
 A snippet of the file might be:  
 98768  
 8077.00  
