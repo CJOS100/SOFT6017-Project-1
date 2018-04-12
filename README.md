@@ -1,6 +1,6 @@
 # Modular Programming Project #1
 
-Name: Cathal O'Sullivan
+Name: Cathal O'Sullivan  
 No: R00161981
 
 ## Specifications
