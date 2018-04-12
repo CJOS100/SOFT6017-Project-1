@@ -54,9 +54,9 @@ c. Largest amount on deposit specifying the account holder(s)
 
 ## Built With
 
-* [Python](http://www.dropwizard.io/1.0.2/docs/) - The code framework used
-* [Git](https://maven.apache.org/) - Versioning management
-* [Atom](https://rometools.github.io/rome/) - IDE
+* [Python](https://www.python.org/) - The code framework used
+* [Git](https://git-scm.com/) - Versioning management
+* [Atom](https://atom.io/) - IDE
 
 ## Authors
 
