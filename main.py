@@ -1,6 +1,5 @@
-quit = 0
-
 def mainMenu():
+    initDatabase()
     finished = 0
     while finished !=1:
         print("Main Menu")
@@ -10,7 +9,7 @@ def mainMenu():
         print("4) Deposit money")
         print("5) Generate a report for management")
         print("6) Quit")
-        selection = input("Please choose an option from 1-6: ")
+        selection = int(input("Please choose an option from 1-6: "))
         if selection < 0 or selection > 6:
             print()
             print("########################################")
@@ -61,5 +60,19 @@ def exitProgram():
     print("Exiting")
     print("########################################")
     exit()
+
+def initDatabase():
+    f = open('bank.txt', 'r')
+    database = f.readlines()
+    f.close()
+    databaseClean = []
+    for i in range(len(database)):
+        databaseClean.append(database[i].strip('\n'))
+    accountNumbers = databaseClean[0::3]
+    accountBalances = databaseClean[1::3]
+    accountNames = databaseClean[2::3]
+    print(accountNumbers) # For testing only, remove in final version
+    print(accountBalances) # For testing only, remove in final version
+    print(accountNames) # For testing only, remove in final version
 
 mainMenu()
