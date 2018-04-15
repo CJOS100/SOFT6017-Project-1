@@ -44,7 +44,13 @@ def openAcc():
     initDatabase()
     finished = 0
     while finished !=1:
-        firstAndLastName = input("Please enter your first and last name: ")
+        nameDone = 0
+        while nameDone != 1:
+            firstAndLastName = input("Please enter your first and last name: ")
+            if len(firstAndLastName) == 0:
+                print("Error! Your input is invalid, please try again.")
+            else:
+                nameDone = 1
         generateSuccess = 0
         while generateSuccess !=1:
             newAccountNumber = randint(00000, 99999)
@@ -52,24 +58,38 @@ def openAcc():
                 generateSuccess = 0
             else:
                 generateSuccess = 1
-        initialBalance = float(input("How much would you like to deposit into your account?: "))
-        if initialBalance < 0:
-            print("Error, invalid amount, please try again")
-        else:
-            accountNumbers.append(newAccountNumber)
-            accountNames.append(firstAndLastName)
-            accountBalances.append(initialBalance)
-            filename = "bank.txt"
-            output_file = open(filename, "a")
-            output_file.write(str(newAccountNumber)+ "\n")
-            output_file.write(str(initialBalance)+ "\n")
-            output_file.write(str(firstAndLastName)+ "\n")
-            output_file.close()
+        balanceDone = 0
+        while balanceDone !=1:
+            try:
+                initialBalance = float(input("How much would you like to deposit into your account?: "))
+                if initialBalance < 0:
+                    print("Error, invalid amount, please try again")
+                else:
+                    accountNumbers.append(newAccountNumber)
+                    accountNames.append(firstAndLastName)
+                    accountBalances.append(initialBalance)
+                    filename = "bank.txt"
+                    output_file = open(filename, "a")
+                    output_file.write(str(newAccountNumber)+ "\n")
+                    output_file.write(str(initialBalance)+ "\n")
+                    output_file.write(str(firstAndLastName)+ "\n")
+                    output_file.close()
+                    balanceDone = 1
+            except:
+                print("Error! Please enter a balance again. (You can have a balance of €0)")
         initDatabase()
         finished = 1
+    mainMenu()
 
 def closeAcc():
-    print("Works")
+    global accountNumbers
+    global accountNames
+    global accountBalances
+    initDatabase()
+    finished = 0
+    while finished !=1:
+        initDatabase()
+        finished = 1
     mainMenu()
 
 def withdraw():
