@@ -46,7 +46,7 @@ def openAcc():
     while finished !=1:
         nameDone = 0
         while nameDone != 1:
-            firstAndLastName = input("Please enter your first and last name: ")
+            firstAndLastName = input("Please enter the first and last name: ")
             if len(firstAndLastName) == 0:
                 print("Error! Your input is invalid, please try again.")
             else:
@@ -61,7 +61,7 @@ def openAcc():
         balanceDone = 0
         while balanceDone !=1:
             try:
-                initialBalance = float(input("How much would you like to deposit into your account?: "))
+                initialBalance = float(input("How much would you like to deposit into the account?: "))
                 if initialBalance < 0:
                     print("Error, invalid amount, please try again")
                 else:
@@ -77,7 +77,6 @@ def openAcc():
                     balanceDone = 1
             except:
                 print("Error! Please enter a balance again. (You can have a balance of €0)")
-        initDatabase()
         finished = 1
     mainMenu()
 
@@ -85,10 +84,30 @@ def closeAcc():
     global accountNumbers
     global accountNames
     global accountBalances
-    initDatabase()
     finished = 0
     while finished !=1:
-        initDatabase()
+        closingNumber = int(input("Please enter the number of the account you would like to close: "))
+        closingIndex = accountNumbers.index(closingNumber)
+        print("Closing index:", closingIndex)
+        del accountNumbers[closingIndex]
+        del accountBalances[closingIndex]
+        del accountNames[closingIndex]
+
+        filename = "bank.txt"
+        output_file = open(filename, "w")
+        output_file.write(str(""))
+        output_file.close()
+
+        linesWritten = 0
+        while linesWritten < len(accountNumbers):
+            print(linesWritten, accountNumbers[linesWritten])
+            filename = "bank.txt"
+            output_file = open(filename, "a")
+            output_file.write(str(accountNumbers[linesWritten])+ "\n")
+            output_file.write(str(accountBalances[linesWritten])+ "\n")
+            output_file.write(str(accountNames[linesWritten])+ "\n")
+            linesWritten = linesWritten + 1
+        output_file.close()
         finished = 1
     mainMenu()
 
@@ -121,7 +140,11 @@ def initDatabase():
     global accountBalances
     global accountNames
     accountNumbers = databaseClean[0::3]
+    for i in range(len(accountNumbers)):
+        accountNumbers[i] = int(accountNumbers[i])
     accountBalances = databaseClean[1::3]
+    for i in range(len(accountBalances)):
+        accountBalances[i] = float(accountBalances[i])
     accountNames = databaseClean[2::3]
     print(accountNumbers) # For testing only, remove in final version
     print(accountBalances) # For testing only, remove in final version
