@@ -1,7 +1,11 @@
 from random import randint
+dbInit = 0
 
 def mainMenu():
-    initDatabase()
+    global dbInit
+    if dbInit == 0:
+        initDatabase()
+        dbInit = dbInit + 1
     finished = 0
     while finished !=1:
         print("*** Main Menu ***")
@@ -43,7 +47,6 @@ def openAcc():
     global accountNumbers
     global accountNames
     global accountBalances
-    initDatabase()
     finished = 0
     while finished !=1:
         nameDone = 0
@@ -70,12 +73,7 @@ def openAcc():
                     accountNumbers.append(newAccountNumber)
                     accountNames.append(firstAndLastName)
                     accountBalances.append(initialBalance)
-                    filename = "bank.txt"
-                    output_file = open(filename, "a")
-                    output_file.write(str(newAccountNumber)+ "\n")
-                    output_file.write(str(initialBalance)+ "\n")
-                    output_file.write(str(firstAndLastName)+ "\n")
-                    output_file.close()
+
                     balanceDone = 1
             except:
                 print("Error! Please enter a balance again. (You can have a balance of €0)")
@@ -95,22 +93,6 @@ def closeAcc():
         del accountNumbers[closingIndex]
         del accountBalances[closingIndex]
         del accountNames[closingIndex]
-
-        filename = "bank.txt"
-        output_file = open(filename, "w")
-        output_file.write(str(""))
-        output_file.close()
-
-        linesWritten = 0
-        while linesWritten < len(accountNumbers):
-            print(linesWritten, accountNumbers[linesWritten])
-            filename = "bank.txt"
-            output_file = open(filename, "a")
-            output_file.write(str(accountNumbers[linesWritten])+ "\n")
-            output_file.write(str(accountBalances[linesWritten])+ "\n")
-            output_file.write(str(accountNames[linesWritten])+ "\n")
-            linesWritten = linesWritten + 1
-        output_file.close()
         finished = 1
     mainMenu()
 
@@ -137,7 +119,6 @@ def genReport():
     output_file.write("Total Money in Accounts:" + " €" + str(sum(accountBalances)) + "\n")
     output_file.close()
 
-
     mainMenu()
 
 def exitProgram():
@@ -145,6 +126,24 @@ def exitProgram():
     print("########################################")
     print("############### Exiting ################")
     print("########################################")
+
+    global accountNumbers
+    global accountNames
+    global accountBalances
+    filename = "bank.txt"
+    output_file = open(filename, "w")
+    output_file.write(str(""))
+    output_file.close()
+
+    linesWritten = 0
+    while linesWritten < len(accountNumbers):
+        filename = "bank.txt"
+        output_file = open(filename, "a")
+        output_file.write(str(accountNumbers[linesWritten])+ "\n")
+        output_file.write(str(accountBalances[linesWritten])+ "\n")
+        output_file.write(str(accountNames[linesWritten])+ "\n")
+        linesWritten = linesWritten + 1
+    output_file.close()
     exit()
 
 def initDatabase():
