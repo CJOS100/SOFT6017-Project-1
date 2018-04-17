@@ -4,7 +4,8 @@ def mainMenu():
     initDatabase()
     finished = 0
     while finished !=1:
-        print("Main Menu")
+        print("*** Main Menu ***")
+        print()
         print("1) Open an account")
         print("2) Close an account")
         print("3) Withdraw money")
@@ -38,6 +39,7 @@ def mainMenu():
             exitProgram()
 
 def openAcc():
+    print()
     global accountNumbers
     global accountNames
     global accountBalances
@@ -81,6 +83,7 @@ def openAcc():
     mainMenu()
 
 def closeAcc():
+    print()
     global accountNumbers
     global accountNames
     global accountBalances
@@ -112,18 +115,33 @@ def closeAcc():
     mainMenu()
 
 def withdraw():
+    print()
     print("Works")
     mainMenu()
 
 def deposit():
+    print()
     print("Works")
     mainMenu()
 
 def genReport():
-    print("Works")
+    print()
+    print("Generating report.txt in current directory...")
+    global accountNumbers
+    global accountBalances
+    global accountNames
+
+    filename = "report.txt"
+    output_file = open(filename, "w")
+    output_file.write("Total Accounts Open:" + " " + str(len(accountNumbers)) + "\n")
+    output_file.write("Total Money in Accounts:" + " €" + str(sum(accountBalances)) + "\n")
+    output_file.close()
+
+
     mainMenu()
 
 def exitProgram():
+    print()
     print("########################################")
     print("############### Exiting ################")
     print("########################################")
