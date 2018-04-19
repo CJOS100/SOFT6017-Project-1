@@ -97,13 +97,35 @@ def closeAcc():
     mainMenu()
 
 def withdraw():
-    print()
-    print("Works")
+    global accountNumbers
+    global accountNames
+    global accountBalances
+    finished = 0
+    while finished !=1:
+        withdrawNumber = int(input("Please enter the number of the account you would withdraw from: "))
+        withdrawIndex = accountNumbers.index(withdrawNumber)
+        withdrawAmount = float(input("Please enter the amount you would like to withdraw: €"))
+        currentBalance = accountBalances[withdrawIndex]
+        newBalance = currentBalance - withdrawAmount
+        accountBalances[withdrawIndex] = newBalance
+        print("New balance:", accountBalances[withdrawIndex])
+        finished = 1
     mainMenu()
 
 def deposit():
-    print()
-    print("Works")
+    global accountNumbers
+    global accountNames
+    global accountBalances
+    finished = 0
+    while finished !=1:
+        depositNumber = int(input("Please enter the number of the account you would deposit to: "))
+        depositIndex = accountNumbers.index(depositNumber)
+        depositAmount = float(input("Please enter the amount you would like to desposit: €"))
+        currentBalance = accountBalances[depositIndex]
+        newBalance = currentBalance + depositAmount
+        accountBalances[depositIndex] = newBalance
+        print("New balance:", accountBalances[depositIndex])
+        finished = 1
     mainMenu()
 
 def genReport():
