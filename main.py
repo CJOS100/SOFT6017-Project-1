@@ -145,9 +145,6 @@ def genReport():
 
 def exitProgram():
     print()
-    print("########################################")
-    print("############### Exiting ################")
-    print("########################################")
 
     global accountNumbers
     global accountNames
@@ -166,6 +163,9 @@ def exitProgram():
         output_file.write(str(accountNames[linesWritten])+ "\n")
         linesWritten = linesWritten + 1
     output_file.close()
+    print("########################################")
+    print("############### Exiting ################")
+    print("########################################")
     exit()
 
 def initDatabase():
