@@ -1,2 +1,2 @@
-Total Accounts Open: 3
-Total Money in Accounts: €35856.11
+Total Accounts Open: 4
+Total Money in Accounts: €36856.11

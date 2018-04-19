@@ -8,39 +8,45 @@ def mainMenu():
         dbInit = dbInit + 1
     finished = 0
     while finished !=1:
-        print("*** Main Menu ***")
-        print()
-        print("1) Open an account")
-        print("2) Close an account")
-        print("3) Withdraw money")
-        print("4) Deposit money")
-        print("5) Generate a report for management")
-        print("6) Quit")
-        selection = int(input("Please choose an option from 1-6: "))
-        if selection < 0 or selection > 6:
+        try:
+            print("*** Main Menu ***")
             print()
-            print("########################################")
-            print("Error! Please choose and option from 1-6")
-            print("########################################")
+            print("1) Open an account")
+            print("2) Close an account")
+            print("3) Withdraw money")
+            print("4) Deposit money")
+            print("5) Generate a report for management")
+            print("6) Quit")
             print()
-        elif selection == 1:
-            finished = 1
-            openAcc()
-        elif selection == 2:
-            finished = 1
-            closeAcc()
-        elif selection == 3:
-            finished = 1
-            withdraw()
-        elif selection == 4:
-            finished = 1
-            deposit()
-        elif selection == 5:
-            finished = 1
-            genReport()
-        elif selection == 6:
-            finished = 1
-            exitProgram()
+            selection = int(input("Please choose an option from 1-6: "))
+            if selection < 0 or selection > 6:
+                print()
+                print("########################################")
+                print("Error! Please choose and option from 1-6")
+                print("########################################")
+                print()
+            elif selection == 1:
+                finished = 1
+                openAcc()
+            elif selection == 2:
+                finished = 1
+                closeAcc()
+            elif selection == 3:
+                finished = 1
+                withdraw()
+            elif selection == 4:
+                finished = 1
+                deposit()
+            elif selection == 5:
+                finished = 1
+                genReport()
+            elif selection == 6:
+                finished = 1
+                exitProgram()
+        except Exception:
+            print()
+            print("Error! Invalid input detected! Please try again!")
+            print()
 
 def openAcc():
     print()
@@ -49,14 +55,19 @@ def openAcc():
     global accountBalances
     finished = 0
     while finished !=1:
-        nameDone = 0
-        while nameDone != 1:
-            firstAndLastName = input("Please enter the first and last name: ")
-            if len(firstAndLastName) == 0:
-                print("Error! Your input is invalid, please try again.")
-            else:
-                nameDone = 1
-        generateSuccess = 0
+        try:
+            nameDone = 0
+            while nameDone != 1:
+                firstAndLastName = input("Please enter the first and last name: ")
+                if len(firstAndLastName) == 0:
+                    print("Error! Your input is invalid, please try again.")
+                else:
+                    nameDone = 1
+            generateSuccess = 0
+        except Exception:
+            print()
+            print("Error! Invalid input detected! Please try again!")
+            print()
         while generateSuccess !=1:
             newAccountNumber = randint(00000, 99999)
             if newAccountNumber in accountNumbers:
@@ -66,9 +77,9 @@ def openAcc():
         balanceDone = 0
         while balanceDone !=1:
             try:
-                initialBalance = float(input("How much would you like to deposit into the account?: "))
+                initialBalance = float(input("How much would you like to deposit into the account?: €"))
                 if initialBalance < 0:
-                    print("Error, invalid amount, please try again")
+                    print("Error, invalid amount, please try again.")
                 else:
                     accountNumbers.append(newAccountNumber)
                     accountNames.append(firstAndLastName)
@@ -87,13 +98,18 @@ def closeAcc():
     global accountBalances
     finished = 0
     while finished !=1:
-        closingNumber = int(input("Please enter the number of the account you would like to close: "))
-        closingIndex = accountNumbers.index(closingNumber)
-        print("Closing index:", closingIndex)
-        del accountNumbers[closingIndex]
-        del accountBalances[closingIndex]
-        del accountNames[closingIndex]
-        finished = 1
+        try:
+            closingNumber = int(input("Please enter the number of the account you would like to close: "))
+            closingIndex = accountNumbers.index(closingNumber)
+            print("Closing index:", closingIndex)
+            del accountNumbers[closingIndex]
+            del accountBalances[closingIndex]
+            del accountNames[closingIndex]
+            finished = 1
+        except Exception:
+            print()
+            print("Error! Invalid input detected! Please try again.")
+            print()
     mainMenu()
 
 def withdraw():
@@ -102,14 +118,27 @@ def withdraw():
     global accountBalances
     finished = 0
     while finished !=1:
-        withdrawNumber = int(input("Please enter the number of the account you would withdraw from: "))
-        withdrawIndex = accountNumbers.index(withdrawNumber)
-        withdrawAmount = float(input("Please enter the amount you would like to withdraw: €"))
-        currentBalance = accountBalances[withdrawIndex]
-        newBalance = currentBalance - withdrawAmount
-        accountBalances[withdrawIndex] = newBalance
-        print("New balance:", accountBalances[withdrawIndex])
-        finished = 1
+        try:
+            withdrawNumber = int(input("Please enter the number of the account you would withdraw from: "))
+            balanceGood = 0
+            while balanceGood = 0:
+                if withdrawNumber not in accountNumbers:
+                    print("Error! You have entered an invalid account number! Please try again.")
+                else:
+                    balanceGood = 1
+            withdrawIndex = accountNumbers.index(withdrawNumber)
+            withdrawAmount = float(input("Please enter the amount you would like to withdraw: €"))
+            currentBalance = accountBalances[withdrawIndex]
+            newBalance = currentBalance - withdrawAmount
+            if newBalance < 0:
+                print("Error! You cannot withdraw more than what is currently in the account! Please try again.")
+            accountBalances[withdrawIndex] = newBalance
+            print("New balance:", accountBalances[withdrawIndex])
+            finished = 1
+        except Exception:
+            print()
+            print("Error! Invalid input detected! Please try again!")
+            print()
     mainMenu()
 
 def deposit():
@@ -185,8 +214,5 @@ def initDatabase():
     for i in range(len(accountBalances)):
         accountBalances[i] = float(accountBalances[i])
     accountNames = databaseClean[2::3]
-    print(accountNumbers) # For testing only, remove in final version
-    print(accountBalances) # For testing only, remove in final version
-    print(accountNames) # For testing only, remove in final version
 
 mainMenu()
