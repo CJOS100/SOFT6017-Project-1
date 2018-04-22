@@ -73,7 +73,7 @@ def openAcc(): # Begin function to open an account
             print("")
         generateSuccess = 0 # Have we successfully generated an account number? No, continue to try generate one.
         while generateSuccess !=1:
-            newAccountNumber = randint(000000, 999999) # sample code had 5 digit account numbers, but pdf said to use 6
+            newAccountNumber = randint(100000, 999999) # sample code had 5 digit account numbers, but pdf said to use 6
             if newAccountNumber in accountNumbers: # Is the number we generated alreay in use? If yes, generate a new one, otherwise continue with it
                 generateSuccess = 0
             elif len(accountNumbers) == 999999: # Are we out of random numbers? If yes, ask the user to remove one, otherwise continue
@@ -109,12 +109,19 @@ def closeAcc(): # Begin close account module
     finished = 0
     while finished !=1:
         try:
-            closingNumber = int(input("Please enter the number of the account you would like to close: ")) # Keep asking the user for the account number to close until they enter a valid number.
-            closingIndex = accountNumbers.index(closingNumber) # Find the index of the account to be closed
-            del accountNumbers[closingIndex] # Remove the account number from the database
-            del accountBalances[closingIndex] # Remove the account balance from the database
-            del accountNames[closingIndex] # Remove the account name from the database
-            finished = 1
+            if len(accountNumbers) == 0:
+                print("Error! No accounts are open, please pick a different option")
+                finished = 1
+            else:
+                closingNumber = int(input("Please enter the number of the account you would like to close: ")) # Keep asking the user for the account number to close until they enter a valid number.
+                closingIndex = accountNumbers.index(closingNumber) # Find the index of the account to be closed
+                del accountNumbers[closingIndex] # Remove the account number from the database
+                del accountBalances[closingIndex] # Remove the account balance from the database
+                del accountNames[closingIndex] # Remove the account name from the database
+                print("") # Formatting
+                print("Success! Account closed:", closingNumber)
+                print("") # Formatting
+                finished = 1
         except Exception:
             print("")
             print("Error! Invalid input detected! Please try again.")
