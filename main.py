@@ -109,8 +109,10 @@ def closeAcc(): # Begin close account module
     finished = 0
     while finished !=1:
         try:
-            if len(accountNumbers) == 0:
+            if len(accountNumbers) == 0: # Incase the database is empty, dont leave the user in a loop
+                print("") # Formatting
                 print("Error! No accounts are open, please pick a different option")
+                print("") # Formatting
                 finished = 1
             else:
                 closingNumber = int(input("Please enter the number of the account you would like to close: ")) # Keep asking the user for the account number to close until they enter a valid number.
