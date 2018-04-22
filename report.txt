@@ -1,2 +1,9 @@
 Total Accounts Open: 4
-Total Money in Accounts: �36856.11
+Total Money in Accounts: €30856.11
+Largest amount on deposit: €23233.99, in account number:586976 owned by: Michael Murphy
+
+Account Number  | Customer Name       | Account Balance
+987686          | Jim McIntyre        | €2077.0
+586976          | Michael Murphy      | €23233.99
+353186          | Abigail Buckley     | €4545.12
+413826          | John Doe            | €1000.0
