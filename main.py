@@ -1,3 +1,7 @@
+# Name: Cathal O'Sullivan
+# Student no: R00161981
+# Github link: https://github.com/CJOS100/SOFT6017-Project-1
+
 from random import randint # random module needed to generate random account number
 dbInit = 0 # This is here so we only initialise the database on first run
 
