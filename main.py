@@ -290,7 +290,10 @@ def exitProgram(): # Begin the function to exit the program, and write to file a
     exit()
 
 def initDatabase(): # Function to initialise the database
-    f = open('bank.txt', 'r') # Open bank.txt in read only mode
+    try:
+        f = open('bank.txt', 'r+') # Open bank.txt in read only mode
+    except IOError: # Create if it doesnt exist
+        f = open('bank.txt', 'w+')
     database = f.readlines() # Read all data from the bank.txt file
     f.close() # Close bank.txt
     databaseClean = [] # Init a new blank database that we will add the cleaned up database to
