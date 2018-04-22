@@ -137,34 +137,40 @@ def withdraw(): # Begin the withdraw module
     finished = 0
     while finished !=1:
         try:
-            numberGood = 0
-            while numberGood == 0:
-                withdrawNumber = int(input("Please enter the number of the account you would withdraw from: ")) # Keep asking the user for the account number to withdraw from until they enter a valid number.
-                if withdrawNumber not in accountNumbers:
-                    print("")
-                    print("Error! You have entered an invalid account number! Please try again.")
-                    print("")
-                    numberGood = 0
-                else:
-                    numberGood = 1
-            withdrawIndex = accountNumbers.index(withdrawNumber) # Find the index of the account they would like to withdraw from
-            balanceGood = 0
-            while balanceGood != 1:
-                withdrawAmount = float(input("Please enter the amount you would like to withdraw: €")) # Ask them for a valid amount to withdraw and validate it
-                currentBalance = accountBalances[withdrawIndex] # Find the current balance
-                newBalance = currentBalance - withdrawAmount # Update the current balance with the entered amount
-                if newBalance < 0: # If they enter a negative error, repeat the loop
-                    print("")
-                    print("Error! You cannot withdraw more than what is currently in the account! Please try again.")
-                    print("")
-                    balanceGood = 0
-                else:
-                    balanceGood = 1 # If they enter a valid number, break the loop and update their balance
-                    accountBalances[withdrawIndex] = newBalance
-                    print("") # Formatting
-                    print("Success! New balance:", accountBalances[withdrawIndex]) # Tell the user the new balance
-                    print("") # Formatting
-                    finished = 1
+            if len(accountNumbers) == 0: # Incase the database is empty, dont leave the user in a loop
+                print("") # Formatting
+                print("Error! No accounts are open, please pick a different option")
+                print("") # Formatting
+                finished = 1
+            else:
+                numberGood = 0
+                while numberGood == 0:
+                    withdrawNumber = int(input("Please enter the number of the account you would withdraw from: ")) # Keep asking the user for the account number to withdraw from until they enter a valid number.
+                    if withdrawNumber not in accountNumbers:
+                        print("")
+                        print("Error! You have entered an invalid account number! Please try again.")
+                        print("")
+                        numberGood = 0
+                    else:
+                        numberGood = 1
+                withdrawIndex = accountNumbers.index(withdrawNumber) # Find the index of the account they would like to withdraw from
+                balanceGood = 0
+                while balanceGood != 1:
+                    withdrawAmount = float(input("Please enter the amount you would like to withdraw: €")) # Ask them for a valid amount to withdraw and validate it
+                    currentBalance = accountBalances[withdrawIndex] # Find the current balance
+                    newBalance = currentBalance - withdrawAmount # Update the current balance with the entered amount
+                    if newBalance < 0: # If they enter a negative error, repeat the loop
+                        print("")
+                        print("Error! You cannot withdraw more than what is currently in the account! Please try again.")
+                        print("")
+                        balanceGood = 0
+                    else:
+                        balanceGood = 1 # If they enter a valid number, break the loop and update their balance
+                        accountBalances[withdrawIndex] = newBalance
+                        print("") # Formatting
+                        print("Success! New balance:", accountBalances[withdrawIndex]) # Tell the user the new balance
+                        print("") # Formatting
+                        finished = 1
         except Exception:
             print("")
             print("Error! Invalid input detected! Please try again!")
@@ -178,33 +184,39 @@ def deposit(): # Begin the deposit module
     finished = 0
     while finished !=1:
         try:
-            numberGood = 0
-            while numberGood == 0:
-                depositNumber = int(input("Please enter the number of the account you would deposit to: ")) # Keep asking the user for an accunt number to deposit to until they enter a valid one
-                if depositNumber not in accountNumbers:
-                    print("")
-                    print("Error! You have entered an invalid account number! Please try again.")
-                    print("")
-                    numberGood = 0
-                else:
-                    numberGood = 1
-            depositIndex = 0 # Init the variable
-            depositIndex = accountNumbers.index(depositNumber) # Update the variable with the account number's index
-            amountGood = 0
-            while amountGood == 0:
-                depositAmount = float(input("Please enter the amount you would like to desposit: €")) # Validate the amount being deposited
-                if depositAmount < 0:
-                    print("Error! You cannot deposit a negative amount of money! Please try again.")
-                    amountGood = 0
-                else:
-                    amountGood = 1
-            currentBalance = accountBalances[depositIndex]
-            newBalance = currentBalance + depositAmount
-            accountBalances[depositIndex] = newBalance
-            print("")
-            print("Success! New balance:", accountBalances[depositIndex])
-            print("")
-            finished = 1
+            if len(accountNumbers) == 0: # Incase the database is empty, dont leave the user in a loop
+                print("") # Formatting
+                print("Error! No accounts are open, please pick a different option")
+                print("") # Formatting
+                finished = 1
+            else:
+                numberGood = 0
+                while numberGood == 0:
+                    depositNumber = int(input("Please enter the number of the account you would deposit to: ")) # Keep asking the user for an accunt number to deposit to until they enter a valid one
+                    if depositNumber not in accountNumbers:
+                        print("")
+                        print("Error! You have entered an invalid account number! Please try again.")
+                        print("")
+                        numberGood = 0
+                    else:
+                        numberGood = 1
+                depositIndex = 0 # Init the variable
+                depositIndex = accountNumbers.index(depositNumber) # Update the variable with the account number's index
+                amountGood = 0
+                while amountGood == 0:
+                    depositAmount = float(input("Please enter the amount you would like to desposit: €")) # Validate the amount being deposited
+                    if depositAmount < 0:
+                        print("Error! You cannot deposit a negative amount of money! Please try again.")
+                        amountGood = 0
+                    else:
+                        amountGood = 1
+                currentBalance = accountBalances[depositIndex]
+                newBalance = currentBalance + depositAmount
+                accountBalances[depositIndex] = newBalance
+                print("")
+                print("Success! New balance:", accountBalances[depositIndex])
+                print("")
+                finished = 1
         except Exception:
             print("")
             print("Error! Invalid input detected! Please try again!")
@@ -218,6 +230,10 @@ def genReport(): # Begin the module to generate a report
     global accountBalances # Global variables once again
     global accountNames # Global variables once again
 
+    if len(accountNumbers) == 0: # Incase the database is empty, dont leave the user in a loop
+        print("") # Formatting
+        print("Error! No accounts are open, report will be empty!")
+        print("") # Formatting
     filename = "report.txt" # The name of the file we will be generating the report to
     output_file = open(filename, "w", encoding='utf-8') # Open the file in writing mode and set the enocding to utf-8
     output_file.write("Total Accounts Open:" + " " + str(len(accountNumbers)) + "\n")
