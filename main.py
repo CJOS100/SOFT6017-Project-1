@@ -8,45 +8,45 @@ def mainMenu():
         dbInit = dbInit + 1
     finished = 0
     while finished !=1:
-        try:
-            print("*** Main Menu ***")
+        #try:
+        print("*** Main Menu ***")
+        print("")
+        print("1) Open an account")
+        print("2) Close an account")
+        print("3) Withdraw money")
+        print("4) Deposit money")
+        print("5) Generate a report for management")
+        print("6) Quit")
+        print("")
+        selection = int(input("Please choose an option from 1-6: "))
+        if selection < 0 or selection > 6:
             print("")
-            print("1) Open an account")
-            print("2) Close an account")
-            print("3) Withdraw money")
-            print("4) Deposit money")
-            print("5) Generate a report for management")
-            print("6) Quit")
+            print("########################################")
+            print("Error! Please choose and option from 1-6")
+            print("########################################")
             print("")
-            selection = int(input("Please choose an option from 1-6: "))
-            if selection < 0 or selection > 6:
-                print("")
-                print("########################################")
-                print("Error! Please choose and option from 1-6")
-                print("########################################")
-                print("")
-            elif selection == 1:
-                finished = 1
-                openAcc()
-            elif selection == 2:
-                finished = 1
-                closeAcc()
-            elif selection == 3:
-                finished = 1
-                withdraw()
-            elif selection == 4:
-                finished = 1
-                deposit()
-            elif selection == 5:
-                finished = 1
-                genReport()
-            elif selection == 6:
-                finished = 1
-                exitProgram()
-        except Exception:
-            print("")
-            print("Error! Invalid input detected! Please try again!")
-            print("")
+        elif selection == 1:
+            finished = 1
+            openAcc()
+        elif selection == 2:
+            finished = 1
+            closeAcc()
+        elif selection == 3:
+            finished = 1
+            withdraw()
+        elif selection == 4:
+            finished = 1
+            deposit()
+        elif selection == 5:
+            finished = 1
+            genReport()
+        elif selection == 6:
+            finished = 1
+            exitProgram()
+        #except Exception:
+            #print("")
+            #print("Error! Invalid input detected! Please try again!")
+            #print("")
 
 def openAcc():
     print("")
@@ -102,7 +102,6 @@ def closeAcc():
         try:
             closingNumber = int(input("Please enter the number of the account you would like to close: "))
             closingIndex = accountNumbers.index(closingNumber)
-            print("Closing index:", closingIndex)
             del accountNumbers[closingIndex]
             del accountBalances[closingIndex]
             del accountNames[closingIndex]
@@ -203,13 +202,26 @@ def genReport():
     filename = "report.txt"
     output_file = open(filename, "w", encoding='utf-8')
     output_file.write("Total Accounts Open:" + " " + str(len(accountNumbers)) + "\n")
-    output_file.write("Total Money in Accounts:" + " €" + str(sum(accountBalances)) + "\n")
-    largestAmount = max(accountBalances)
-    largestIndex = accountBalances.index(largestAmount)
-    output_file.write("Largest amount on deposit: €" + str(accountBalances[largestIndex]) + ", in account number:" + str(accountNumbers[largestIndex]) + " owned by: " + str(accountNames[largestIndex]) + "\n")
+    output_file.write("Total Money in Accounts:" + " €" + str(format(sum(accountBalances), ".2f")) + "\n" + "\n")
+    maxVal = max(accountBalances)
+    largestIndex = accountBalances.index(maxVal)
+    largest_name = ""
+    count = 0
+    largestIndexes = []
+    if accountBalances.count(maxVal) > 1:
+        output_file.write("Largest amount on deposit: €" + str(accountBalances[largestIndex]) + "\n")
+        for i in range(len(accountBalances)):
+            if accountBalances[i] == maxVal:
+                largestIndexes.append(i)
+        i = 0
+        output_file.write("Owned by:" + "\n" + "Account Number | Customer Name" + "\n")
+        print(largestIndexes)
+        while i < len(largestIndexes):
+                output_file.write(str(accountNumbers[i]) + "         | " + str(accountNames[i]) + "\n")
+                i = i + 1
+    elif accountBalances.count(maxVal) == 1:
+        output_file.write("Largest amount on deposit: €" + str(accountBalances[largestIndex]) + ", in account number:" + str(accountNumbers[largestIndex]) + ", owned by: " + str(accountNames[largestIndex]) + "\n")
     output_file.write("\n" + "Account Number  | Customer Name       | Account Balance" + "\n")
-    output_file
-
     linesWritten = 0
     while linesWritten < len(accountNumbers):
         max_width = 20
