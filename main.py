@@ -22,7 +22,7 @@ def mainMenu(): # Begin the main menu
             print("5) Generate a report for management")
             print("6) Quit")
             print("")
-            selection = int(input("Please choose an option from 1-6: "))
+            selection = int(input("Please choose an option from 1-6: ")) # Go to the users selection, otherwise provide error message
             if selection < 0 or selection > 6:
                 print("")
                 print("########################################")
