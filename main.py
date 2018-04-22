@@ -12,45 +12,45 @@ def mainMenu(): # Begin the main menu
         dbInit = dbInit + 1
     finished = 0
     while finished !=1: # Have we finished with the main menu? No, then continue to show it.
-        #try:
-        print("*** Main Menu ***")
-        print("")
-        print("1) Open an account")
-        print("2) Close an account")
-        print("3) Withdraw money")
-        print("4) Deposit money")
-        print("5) Generate a report for management")
-        print("6) Quit")
-        print("")
-        selection = int(input("Please choose an option from 1-6: "))
-        if selection < 0 or selection > 6:
+        try:
+            print("*** Main Menu ***")
             print("")
-            print("########################################")
-            print("Error! Please choose and option from 1-6")
-            print("########################################")
+            print("1) Open an account")
+            print("2) Close an account")
+            print("3) Withdraw money")
+            print("4) Deposit money")
+            print("5) Generate a report for management")
+            print("6) Quit")
             print("")
-        elif selection == 1:
-            finished = 1
-            openAcc()
-        elif selection == 2:
-            finished = 1
-            closeAcc()
-        elif selection == 3:
-            finished = 1
-            withdraw()
-        elif selection == 4:
-            finished = 1
-            deposit()
-        elif selection == 5:
-            finished = 1
-            genReport()
-        elif selection == 6:
-            finished = 1
-            exitProgram()
-        #except Exception:
-            #print("")
-            #print("Error! Invalid input detected! Please try again!")
-            #print("")
+            selection = int(input("Please choose an option from 1-6: "))
+            if selection < 0 or selection > 6:
+                print("")
+                print("########################################")
+                print("Error! Please choose and option from 1-6")
+                print("########################################")
+                print("")
+            elif selection == 1:
+                finished = 1
+                openAcc()
+            elif selection == 2:
+                finished = 1
+                closeAcc()
+            elif selection == 3:
+                finished = 1
+                withdraw()
+            elif selection == 4:
+                finished = 1
+                deposit()
+            elif selection == 5:
+                finished = 1
+                genReport()
+            elif selection == 6:
+                finished = 1
+                exitProgram()
+        except Exception:
+            print("")
+            print("Error! Invalid input detected! Please try again!")
+            print("")
 
 def openAcc(): # Begin function to open an account
     print("") # Blank line for formatting
